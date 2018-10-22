@@ -1,4 +1,4 @@
-package com.codility.prefix.aws;
+package ca.ematos.aws;
 
 import java.util.Arrays;
 

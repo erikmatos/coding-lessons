@@ -1,4 +1,4 @@
-package com.codility.prefix.sums;
+package ca.ematos.sums;
 
 public class MinAvgTwoSlice {
 

@@ -1,4 +1,4 @@
-package com.codility.prefix.sort;
+package ca.ematos.sort;
 
 import java.util.Arrays;
 
