@@ -56,9 +56,9 @@ public class MaxProfit {
 		int max = 0;
 		int min = 200001;
 		
-		for ( int day : A) {
-			min = Math.min(min, day);
-			max = Math.max(max, day - min);
+		for ( int a : A) {
+			min = Math.min(min, a);
+			max = Math.max(max, a - min);
 		}
 		
 		return max;
