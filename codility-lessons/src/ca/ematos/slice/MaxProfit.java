@@ -40,6 +40,28 @@ public class MaxProfit {
 	 * */
 	public static void main(String[] args) {
 
+		int[] A = {23171, 21011, 21123, 21366, 21013, 21367};
+		System.out.println(String.format("Expected [356] Result [%s]", solution(A)));
+
+		int[] B = {23171, 23170, 23169, 23168, 23167, 23166};
+		System.out.println(String.format("Expected [0] Result [%s]", solution(B)));
+		
+		int[] C = {10, 20, 15, 16, 17, 18};
+		System.out.println(String.format("Expected [10] Result [%s]", solution(C)));		
+		
+	}
+
+	//O(N)
+	public static int solution(int[] A) {
+		int max = 0;
+		int min = 200001;
+		
+		for ( int day : A) {
+			min = Math.min(min, day);
+			max = Math.max(max, day - min);
+		}
+		
+		return max;
 	}
 
 }
