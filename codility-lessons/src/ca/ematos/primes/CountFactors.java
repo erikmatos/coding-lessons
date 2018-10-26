@@ -22,7 +22,8 @@ public class CountFactors {
 	 * */
 	public static void main(String[] args) {
 		System.out.println(String.format("Factors of [24] Expected [8] Result [%s]", solution(24)));
-		System.out.println(String.format("Factors of [%s] Expected [8] Result [%s]", Integer.MAX_VALUE, solution(Integer.MAX_VALUE)));
+		System.out.println(String.format("Factors of [2147483647] Expected [2] Result [%s]", solution(Integer.MAX_VALUE)));
+		System.out.println(String.format("Factors of [362880] Expected [160] Result [%s]", solution(362880)));
 	}
 
 	//O(sqrt(N))
