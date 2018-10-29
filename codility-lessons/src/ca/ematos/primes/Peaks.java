@@ -1,5 +1,7 @@
 package ca.ematos.primes;
 
+import java.util.Vector;
+
 public class Peaks {
 
 	/*
@@ -85,17 +87,38 @@ public class Peaks {
 	}
 
 	public static int solution(int[] A) {
+		Vector<Integer> positions = new Vector<Integer>();
+		int n = A.length;
 		
-		int peaks = 0;
-		if (A.length >= 3) {
-			for(int i=1; i < A.length -1;i++) {
+		if (n >= 3) {
+			
+			int blocks = (int) Math.sqrt(new Double(n)); 
+			int size = n / blocks;
+			
+			for(int i=1; i < n-1; i++) {
 				if (A[i-1] < A[i] && A[i] > A[i+1]) {
-					peaks += 1;
+					positions.add(i);
 				}
+			}
+
+			if ( positions.size() > 0) {
+				
+				long beg = 0;
+				long end = size;
+				for(Integer position : positions) {
+					
+					if ( position >= beg && position < end ) {
+						
+					}
+					
+					
+				}
+				
+				
 			}
 			
 		}
 		
-		return peaks;
+		return positions.size();
 	}
 }
