@@ -86,6 +86,8 @@ public class Peaks {
 		System.out.println(String.format("Expected [3] Result [%s]", solution(A)));
 	}
 
+
+	//O(N * log(log(N)))
 	public static int solution(int[] A) {
 		Vector<Integer> peaks = new Vector<Integer>();
 		int n = A.length;
