@@ -82,43 +82,52 @@ public class Peaks {
 	 * each element of array A is an integer within the range [0..1,000,000,000].
 	 * */
 	public static void main(String[] args) {
-		int[] A = { 1, 2, 3, 4, 3, 4, 1, 2, 3, 4, 6, 2};
+		int[] A = { 1, 2, 3, 4, 3, 4, 1, 2, 3, 4, 6, 2 };
 		System.out.println(String.format("Expected [3] Result [%s]", solution(A)));
 	}
 
 	public static int solution(int[] A) {
-		Vector<Integer> positions = new Vector<Integer>();
+		Vector<Integer> peaks = new Vector<Integer>();
 		int n = A.length;
 		
 		if (n >= 3) {
 			
-			int blocks = (int) Math.sqrt(new Double(n)); 
-			int size = n / blocks;
-			
 			for(int i=1; i < n-1; i++) {
 				if (A[i-1] < A[i] && A[i] > A[i+1]) {
-					positions.add(i);
+					peaks.add(i);
 				}
 			}
 
-			if ( positions.size() > 0) {
-				
-				long beg = 0;
-				long end = size;
-				for(Integer position : positions) {
-					
-					if ( position >= beg && position < end ) {
-						
-					}
-					
-					
-				}
-				
-				
+			if (peaks.size() == 0) {
+				return 0;
 			}
 			
+		    for(int size = 1; size <= n; size++) {
+    	
+		    	if(n % size != 0) continue; // skip if non-divisible
+		        
+		        int find = 0;
+		        int groups = n/size;
+		        boolean ok = true;
+		        
+		        // Find whether every group has a peak
+		        for(int index : peaks){
+		        	if( index/size > find ){
+		        		ok = false;
+		        		break;
+		        	}
+		          
+		        	if( index/size == find) {
+		        		find++;
+		        	}
+		        }
+		        
+		        if(find != groups) ok = false;
+		        
+		        if(ok) return groups;
+	    	}
 		}
 		
-		return positions.size();
+		return peaks.size();
 	}
 }
