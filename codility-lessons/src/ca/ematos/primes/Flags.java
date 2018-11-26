@@ -1,5 +1,6 @@
 package ca.ematos.primes;
 
+import java.util.Stack;
 import java.util.Vector;
 
 public class Flags {
@@ -7,7 +8,8 @@ public class Flags {
 	/*
 	 * A non-empty array A consisting of N integers is given.
 	 * 
-	 * A peak is an array element which is larger than its neighbours. More precisely, it is an index P such that 0 < P < N − 1 and A[P − 1] < A[P] > A[P + 1].
+	 * A peak is an array element which is larger than its neighbors. More precisely, it is an index P such 
+	 * that 0 < P < N − 1 and A[P − 1] < A[P] > A[P + 1].
 	 * 
 	 * For example, the following array A:
 	 * 
@@ -25,11 +27,13 @@ public class Flags {
 	 *     A[11] = 2
 	 * has exactly four peaks: elements 1, 3, 5 and 10.
 	 * 
-	 * You are going on a trip to a range of mountains whose relative heights are represented by array A, as shown in a figure below. You have to choose how many flags you should take with you. The goal is to set the maximum number of flags on the peaks, according to certain rules.
+	 * You are going on a trip to a range of mountains whose relative heights are represented by array A, as shown in a figure below. 
+	 * You have to choose how many flags you should take with you. The goal is to set the maximum number of flags on the peaks, according to certain rules.
 	 * 
 	 * 
 	 * 
-	 * Flags can only be set on peaks. What's more, if you take K flags, then the distance between any two flags should be greater than or equal to K. The distance between indices P and Q is the absolute value |P − Q|.
+	 * Flags can only be set on peaks. What's more, if you take K flags, then the distance between any two flags should be greater than or equal to K. 
+	 * The distance between indices P and Q is the absolute value |P − Q|.
 	 * 
 	 * For example, given the mountain range represented by array A, above, with N = 12, if you take:
 	 * 
@@ -71,9 +75,9 @@ public class Flags {
 		
 		System.out.println(String.format("Expected [%s] Result [%s]", 3, solution(A)));
 		
-		int[] B = {1, 2, 3, 4, 5, 6, 9, 8, 9, 10, 11, 12};
+		int[] B = {0, 0, 0, 0, 0, 1, 0, 1, 0, 1};
 		
-		//System.out.println(String.format("Expected [%s] Result [%s]", 1, solution(B)));
+		System.out.println(String.format("Expected [%s] Result [%s]", 2, solution(B)));
 		
 		int[] C = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 		
@@ -90,51 +94,49 @@ public class Flags {
 			return flags;
 		}
 		
-		Vector<Integer> peaks = new Vector<Integer>();
+		Stack<Integer> positions = new Stack<Integer>();
 		for(int i = 1; i < n -1; i++) {
 			if (A[i-1] < A[i] && A[i] > A[i+1]) {
-				peaks.add(i);
+				positions.add(i);
 			}
 		}
 		
-		int size = peaks.size();
-		
-		if (size == 0 || size == 1) {
-			return size;
+		if (positions.size() == 0 || positions.size() ==1) {
+			return positions.size();
+		}
+
+		long k = Math.abs(n / 3);
+
+		while(!positions.isEmpty()) {
+			
+			
+			
+			positions.peek();
+			positions.pop();
 		}
 		
-		// |P-Q|
-		int range = Math.abs(peaks.get(0) - peaks.get(size-1));
-		
-		
-		
-
-
-		
-	    /*
-		
-		
-		
-		flags = peaks.size();
-		int p = peaks.get(0);
-		int q = 0;
-		for(int x = 1; x < peaks.size(); x++) {
-			q = peaks.get(x);
-			System.out.println(String.format("Last [%s] Current[%s] ", p, q));
-			
-			int k = Math.abs(p - q);
-			System.out.println(String.format("Diff [%s] Flags [%s]", k, flags));
-			System.out.println("*********************************************");
-			if ( k < flags ) {
-				flags--;
-				continue;
-			}
-			
-			p = peaks.get(x);
-		}
-		*/
 		return flags;
-		
 	}
 
+	/*
+	 * long k = Math.abs(n / 3);
+
+		long steps = 0;
+		for(int i = 1; i < n -1; i++) {
+			if (A[i-1] < A[i] && A[i] > A[i+1]) {
+				
+				
+				if (steps == 0) {
+					steps = i;
+					flags++;
+				} else {
+					
+					if ( i >= (steps + k)) {
+						flags++;
+						steps += k;
+					}
+				}
+			}
+		}
+	 * */
 }
