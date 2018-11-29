@@ -13,16 +13,16 @@ public class Flags {
 	 * 
 	 * For example, the following array A:
 	 * 
-	 *     A[0] = 1
-	 *     A[1] = 5
-	 *     A[2] = 3
-	 *     A[3] = 4
-	 *     A[4] = 3
-	 *     A[5] = 4
-	 *     A[6] = 1
-	 *     A[7] = 2
-	 *     A[8] = 3
-	 *     A[9] = 4
+	 *     A[00] = 1
+	 *     A[01] = 5
+	 *     A[02] = 3
+	 *     A[03] = 4
+	 *     A[04] = 3
+	 *     A[05] = 4
+	 *     A[06] = 1
+	 *     A[07] = 2
+	 *     A[08] = 3
+	 *     A[09] = 4
 	 *     A[10] = 6
 	 *     A[11] = 2
 	 * has exactly four peaks: elements 1, 3, 5 and 10.
@@ -50,16 +50,16 @@ public class Flags {
 	 * 
 	 * For example, the following array A:
 	 * 
-	 *     A[0] = 1
-	 *     A[1] = 5
-	 *     A[2] = 3
-	 *     A[3] = 4
-	 *     A[4] = 3
-	 *     A[5] = 4
-	 *     A[6] = 1
-	 *     A[7] = 2
-	 *     A[8] = 3
-	 *     A[9] = 4
+	 *     A[00] = 1
+	 *     A[01] = 5
+	 *     A[02] = 3
+	 *     A[03] = 4
+	 *     A[04] = 3
+	 *     A[05] = 4
+	 *     A[06] = 1
+	 *     A[07] = 2
+	 *     A[08] = 3
+	 *     A[09] = 4
 	 *     A[10] = 6
 	 *     A[11] = 2
 	 * the function should return 3, as explained above.
@@ -88,10 +88,9 @@ public class Flags {
 	public static int solution(int[] A) {
 		
 		int n = A.length;
-		int flags = 0;
 		
 		if (n < 3 ) {
-			return flags;
+			return 0;
 		}
 		
 		Stack<Integer> positions = new Stack<Integer>();
@@ -101,42 +100,58 @@ public class Flags {
 			}
 		}
 		
-		if (positions.size() == 0 || positions.size() ==1) {
+		if (positions.size() < 2) {
 			return positions.size();
 		}
-
-		long k = Math.abs(n / 3);
-
-		while(!positions.isEmpty()) {
-			
-			
-			
-			positions.peek();
-			positions.pop();
-		}
 		
-		return flags;
+		long max_flags = 1;
+		
+		int max_min_distance = (int) Math.sqrt(n);
+
+		System.out.println(max_min_distance);
+		
+		
+		
+		return positions.size();
 	}
 
-	/*
+	/**
 	 * long k = Math.abs(n / 3);
-
-		long steps = 0;
-		for(int i = 1; i < n -1; i++) {
-			if (A[i-1] < A[i] && A[i] > A[i+1]) {
-				
-				
-				if (steps == 0) {
-					steps = i;
-					flags++;
-				} else {
-					
-					if ( i >= (steps + k)) {
-						flags++;
-						steps += k;
-					}
-				}
-			}
-		}
+		def solution(A):
+    from math import sqrt
+    A_len = len(A)
+    next_peak = [-1] * A_len
+    peaks_count = 0
+    first_peak = -1
+    # Generate the information, where the next peak is.
+    for index in xrange(A_len-2, 0, -1):
+        if A[index] > A[index+1] and A[index] > A[index-1]:
+            next_peak[index] = index
+            peaks_count += 1
+            first_peak = index
+        else:
+            next_peak[index] = next_peak[index+1]
+    if peaks_count < 2:
+        # There is no peak or only one.
+        return peaks_count
+    max_flags = 1
+    max_min_distance = int(sqrt(A_len))
+    for min_distance in xrange(max_min_distance + 1, 1, -1):
+        # Try for every possible distance.
+        flags_used = 1
+        flags_have = min_distance-1 # Use one flag at the first peak
+        pos = first_peak
+        while flags_have > 0:
+            if pos + min_distance >= A_len-1:
+                # Reach or beyond the end of the array
+                break
+            pos = next_peak[pos+min_distance]
+            if pos == -1:
+                # No peak available afterward
+                break
+            flags_used += 1
+            flags_have -= 1
+        max_flags = max(max_flags, flags_used)
+    return max_flags
 	 * */
 }
