@@ -1,8 +1,5 @@
 package ca.ematos.primes;
 
-import java.util.Stack;
-import java.util.Vector;
-
 public class Flags {
 
 	/*
@@ -79,12 +76,9 @@ public class Flags {
 		
 		System.out.println(String.format("Expected [%s] Result [%s]", 2, solution(B)));
 		
-		int[] C = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
-		
-		//System.out.println(String.format("Expected [%s] Result [%s]", 0, solution(C)));
-		
 	}
 	
+	//O(N)
 	public static int solution(int[] A) {
 		
 		int n = A.length;
@@ -93,65 +87,48 @@ public class Flags {
 			return 0;
 		}
 		
-		Stack<Integer> positions = new Stack<Integer>();
-		for(int i = 1; i < n -1; i++) {
+		int peaks = 0;
+		int firstPeakPosition = -1;
+		int[] entries = new int[n];
+
+		for(int i = n-2; i > 0; i--) {
 			if (A[i-1] < A[i] && A[i] > A[i+1]) {
-				positions.add(i);
+				entries[i] = i;
+				peaks++;
+				firstPeakPosition = i;
+			} else {
+				entries[i] = entries[i+1];
 			}
 		}
 		
-		if (positions.size() < 2) {
-			return positions.size();
+		if (peaks < 2) {
+			return peaks;
+		}
+
+		int flags = 1;
+		int k = (int) Math.sqrt(n);
+		for (int i = k+1; i > 1; i-- ) {
+			int flagsUsed = 1;
+			int flagsHave = i-1; 
+	        int pos = firstPeakPosition;
+	        while (flagsHave > 0) {
+	            
+	        	if (pos + i >= n-1) {
+	                break;
+	            }
+	        	
+	            pos = entries[pos+i];
+	            if (pos == 0) {
+	                break;
+	            }
+                
+	            flagsUsed += 1;
+	            flagsHave -= 1;
+	        }
+	        
+			flags = Math.max(flags, flagsUsed);
 		}
 		
-		long max_flags = 1;
-		
-		int max_min_distance = (int) Math.sqrt(n);
-
-		System.out.println(max_min_distance);
-		
-		
-		
-		return positions.size();
+		return flags;
 	}
-
-	/**
-	 * long k = Math.abs(n / 3);
-		def solution(A):
-    from math import sqrt
-    A_len = len(A)
-    next_peak = [-1] * A_len
-    peaks_count = 0
-    first_peak = -1
-    # Generate the information, where the next peak is.
-    for index in xrange(A_len-2, 0, -1):
-        if A[index] > A[index+1] and A[index] > A[index-1]:
-            next_peak[index] = index
-            peaks_count += 1
-            first_peak = index
-        else:
-            next_peak[index] = next_peak[index+1]
-    if peaks_count < 2:
-        # There is no peak or only one.
-        return peaks_count
-    max_flags = 1
-    max_min_distance = int(sqrt(A_len))
-    for min_distance in xrange(max_min_distance + 1, 1, -1):
-        # Try for every possible distance.
-        flags_used = 1
-        flags_have = min_distance-1 # Use one flag at the first peak
-        pos = first_peak
-        while flags_have > 0:
-            if pos + min_distance >= A_len-1:
-                # Reach or beyond the end of the array
-                break
-            pos = next_peak[pos+min_distance]
-            if pos == -1:
-                # No peak available afterward
-                break
-            flags_used += 1
-            flags_have -= 1
-        max_flags = max(max_flags, flags_used)
-    return max_flags
-	 * */
 }
