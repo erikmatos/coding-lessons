@@ -1,5 +1,7 @@
 package ca.ematos.arrays;
 
+import java.util.Arrays;
+
 public class OddOccurrencesInArray {
 
 	/*
@@ -38,27 +40,52 @@ public class OddOccurrencesInArray {
 		int[] A = { 9, 3, 9, 3, 9, 7, 9};
 		System.out.println(String.format("Expected [7] Result [%s]", solution(A)));
 		
-		int[] B = { 1, 2, 1, 2, 3, 4, 3};
+		int[] B = { 2, 2, 3, 3, 4};
 		System.out.println(String.format("Expected [4] Result [%s]", solution(B)));
+		
+		int[] C = { 42};
+		System.out.println(String.format("Expected [42] Result [%s]", solution(C)));
 	}
 
-    public static int solution(int[] A) {
+	//O(N) or O(N*log(N))
+    public static int _solution(int[] A) {
     	
-    	int N = A.length;
+    	int n = A.length;
     	
-    	if(N == 0 || N % 2 == 0)  {
+    	if(n == 0)  {
     		return 0;
     	}
-    	
-    	
-    	for(int I = 0; I < N/2; I++) {
-    		int K = N - I - 1;
-    		System.out.println(String.format("K [%s] = N [%s] - I [%s] - 1", K, N, I));
-    		
+
+    	if(n == 1)  {
+    		return A[0];
     	}
     	
+    	Arrays.sort(A);
+    	
+    	int counter = 0;
+    	int steping = 2;
+    	while (counter < n-1) {
+    		
+    		if (A[counter] != A[counter+1]) {
+    			return A[counter];
+    		}
+    		
+    		counter+=steping;
+    	}
     	    	
-    	return 0;
+    	return A[n-1];
+    }
+    
+    //O(N) or O(N*log(N))
+    public static int solution(int[] A) {
+    	
+    	int missing = 0;
+    	
+    	for(int a : A) {
+    		missing ^= a;
+    	}
+    	
+    	return missing;
     }
 
 }
