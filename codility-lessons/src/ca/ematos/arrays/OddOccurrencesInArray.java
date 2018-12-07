@@ -83,6 +83,7 @@ public class OddOccurrencesInArray {
     	
     	for(int a : A) {
     		missing ^= a;
+    		System.out.println(missing);
     	}
     	
     	return missing;
