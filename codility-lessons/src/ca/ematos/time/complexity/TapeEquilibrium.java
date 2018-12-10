@@ -71,7 +71,7 @@ public class TapeEquilibrium {
 			partTwo += a;
 		}
 				
-		int min = 100001;
+		int min = Integer.MAX_VALUE;
 		int partOne = 0;
 		
 		for(int i = 0; i < A.length-1; i++) {
