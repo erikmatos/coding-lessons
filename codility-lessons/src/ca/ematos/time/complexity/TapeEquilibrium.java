@@ -1,7 +1,5 @@
 package ca.ematos.time.complexity;
 
-import java.util.Arrays;
-
 public class TapeEquilibrium {
 
 	/*
@@ -54,29 +52,37 @@ public class TapeEquilibrium {
 		System.out.println(String.format("Expected [2000] Result [%s]", solution(B)));
 		int[] C = {-10, -5, -3, -4, -5};
 		System.out.println(String.format("Expected [3] Result [%s]", solution(C)));
+		int[] D = {-10, -20, -30, -40, 100};
+		System.out.println(String.format("Expected [20] Result [%s]", solution(D)));
+
+		
 	}
 	
+	//O(N)
 	public static int solution(int[] A) {
     
 		if ( A.length < 2) {
 			return 0;
 		}
-	
-		int total = 0;
+		
+		int partTwo = 0;
 		
 		for(int a : A) {
-			total += Math.abs(a);
+			partTwo += a;
 		}
-		
-		
+				
 		int min = 100001;
-		int increasing = A[0];
-		for(int i = 1; i < A.length; i++) {
-			int abs = Math.abs(increasing - (total - increasing) );
+		int partOne = 0;
+		
+		for(int i = 0; i < A.length-1; i++) {
+
+			int current = A[i];
+			partOne += current;
+			partTwo -= current;
 			
-			increasing += Math.abs(A[i]);
-			min = Math.min(min, abs);
+			min = Math.min(min, Math.abs(partOne - partTwo));
 		}
+		
 		
 		return min;
 	}
