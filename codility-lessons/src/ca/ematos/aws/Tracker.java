@@ -8,7 +8,6 @@ import java.util.TreeMap;
 public class Tracker {
 
 	public static void main(String[] args) {
-
 		
 		List<Integer> a = new ArrayList<Integer>();
 		a.add(1);
