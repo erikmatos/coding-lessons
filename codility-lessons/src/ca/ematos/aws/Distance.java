@@ -9,6 +9,30 @@ public class Distance {
 
 	public static void main(String[] args) {
 
+		long begin = System.currentTimeMillis();
+		List<List<Integer>> items = new ArrayList<List<Integer>>();
+		
+		List<Integer> item = null;
+		for(int i = 0; i < 10000000; i++) {
+			
+			if ( i % 50 == 0) {
+				items.add(null);
+			}
+			
+			int random = (int) (Math.random() * 5000 + 1);
+			
+			item = new ArrayList<>();
+			item.add(random);
+			
+			items.add(item);
+		}
+		
+		FlightBackCalculator(items, 700);
+		
+		long end = System.currentTimeMillis();
+		
+		System.out.println(String.format("%d", end-begin));
+		
 		List<Integer> a = new ArrayList<Integer>();
 		a.add(3000);
 		
@@ -37,9 +61,9 @@ public class Distance {
 		
 		
 		allDistances = allDistances
-				.stream()
+				.parallelStream()
 				.filter(Objects::nonNull)
-				.map(y-> y.stream().filter(Objects::nonNull).filter(d-> d*2<=maxDistance).collect(Collectors.toList()))
+				.map(y-> y.parallelStream().filter(Objects::nonNull).filter(d-> d*2<=maxDistance && d > 0).collect(Collectors.toList()))
 				.filter(y -> !y.isEmpty())
 				.collect(Collectors.toList());
 		
