@@ -2,6 +2,8 @@ package ca.ematos.aws;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Distance {
 
@@ -16,10 +18,17 @@ public class Distance {
 		List<Integer> c = new ArrayList<Integer>();
 		c.add(5000);
 		
+		List<Integer> d = null;
+		
+		List<Integer> e = new ArrayList<Integer>();
+		e.add(null);
+		
 		List<List<Integer>> locations = new ArrayList<List<Integer>>();
 		locations.add(a);
 		locations.add(b);
 		locations.add(c);
+		locations.add(d);
+		locations.add(e);
 		
 		FlightBackCalculator(locations, 7000).stream().forEach(System.out::println);
 	}
@@ -27,7 +36,13 @@ public class Distance {
 	public static List<List<Integer>> FlightBackCalculator(List<List<Integer>> allDistances, int maxDistance){
 		
 		
-		//allDistances.stream().anyMatch(f -> f.stream().collect(Collectors.summingInt(i -> c)))
+		allDistances = allDistances
+				.stream()
+				.filter(Objects::nonNull)
+				.map(y-> y.stream().filter(Objects::nonNull).filter(d-> d*2<=maxDistance).collect(Collectors.toList()))
+				.collect(Collectors.toList());
+		
+		
 		
 		
 		return allDistances;
