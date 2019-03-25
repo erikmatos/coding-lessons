@@ -9,11 +9,11 @@ public class Distance {
 
 	public static void main(String[] args) {
 
-		long begin = System.currentTimeMillis();
+		
 		List<List<Integer>> items = new ArrayList<List<Integer>>();
 		
 		List<Integer> item = null;
-		for(int i = 0; i < 10000000; i++) {
+		for(int i = 0; i < 100000000; i++) {
 			
 			if ( i % 50 == 0) {
 				items.add(null);
@@ -21,12 +21,13 @@ public class Distance {
 			
 			int random = (int) (Math.random() * 5000 + 1);
 			
-			item = new ArrayList<>();
+			item = new ArrayList<Integer>();
 			item.add(random);
 			
 			items.add(item);
 		}
 		
+		long begin = System.currentTimeMillis();
 		FlightBackCalculator(items, 700);
 		
 		long end = System.currentTimeMillis();
