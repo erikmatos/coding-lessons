@@ -40,6 +40,7 @@ public class Distance {
 				.stream()
 				.filter(Objects::nonNull)
 				.map(y-> y.stream().filter(Objects::nonNull).filter(d-> d*2<=maxDistance).collect(Collectors.toList()))
+				.filter(y -> !y.isEmpty())
 				.collect(Collectors.toList());
 		
 		
