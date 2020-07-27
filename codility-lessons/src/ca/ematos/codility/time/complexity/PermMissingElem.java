@@ -1,4 +1,4 @@
-package ca.ematos.time.complexity;
+package ca.ematos.codility.time.complexity;
 
 import java.util.Arrays;
 

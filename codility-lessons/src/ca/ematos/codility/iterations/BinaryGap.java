@@ -1,4 +1,4 @@
-package ca.ematos.iterations;
+package ca.ematos.codility.iterations;
 
 public class BinaryGap {
 

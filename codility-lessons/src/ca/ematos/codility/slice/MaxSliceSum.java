@@ -1,4 +1,4 @@
-package ca.ematos.slice;
+package ca.ematos.codility.slice;
 
 public class MaxSliceSum {
 	

@@ -1,4 +1,4 @@
-package ca.ematos.arrays;
+package ca.ematos.codility.arrays;
 
 import java.util.Arrays;
 

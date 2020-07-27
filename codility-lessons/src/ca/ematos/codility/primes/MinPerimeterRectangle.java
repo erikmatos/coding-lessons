@@ -1,4 +1,4 @@
-package ca.ematos.primes;
+package ca.ematos.codility.primes;
 
 public class MinPerimeterRectangle {
 

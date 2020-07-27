@@ -1,4 +1,4 @@
-package ca.ematos.time.counting.elements;
+package ca.ematos.codility.time.counting.elements;
 
 public class PermCheck {
 

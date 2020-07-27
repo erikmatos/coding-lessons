@@ -1,4 +1,4 @@
-package ca.ematos.sums;
+package ca.ematos.codility.sums;
 
 public class CountDiv {
 
