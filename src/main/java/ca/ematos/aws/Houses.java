@@ -38,7 +38,6 @@ public class Houses {
 		process[0] = 0 ^ states[1];
 		
 		for(int i = 1; i < states.length-1; i++) {
-			
 			process[i] = states[i-1] ^ states[i+1];
 		}
 		

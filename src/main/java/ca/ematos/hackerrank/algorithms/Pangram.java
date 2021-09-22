@@ -6,10 +6,10 @@ public class Pangram {
 
     public static void main(String[] arguments){
         String content = "We promptly judged antique ivory buckles for the next prize";
-        System.out.println(pangrams(content));
+        System.out.println(IsPangrams(content));
     }
 
-    static String pangrams(String s) {
+    private static String IsPangrams(String s) {
         final String pangram = "pangram";
         final String notPangram = "not pangram";
 
@@ -36,9 +36,9 @@ public class Pangram {
             letters[x - 97]++;
         }
 
-        for(int c : letters){
+        for(int character : letters){
 
-            if (c == 0){
+            if (character == 0){
                 return notPangram;
             }
         }
