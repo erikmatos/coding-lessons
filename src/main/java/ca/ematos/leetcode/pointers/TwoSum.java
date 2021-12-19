@@ -1,4 +1,4 @@
-package ca.ematos.leetcode;
+package ca.ematos.leetcode.pointers;
 
 import java.util.*;
 
